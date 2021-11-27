@@ -1,11 +1,15 @@
 package fi.asteriski.ilmot.domain;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 
 import java.time.Instant;
 
+@Getter
 public class ArchivedEvent {
 
+    @Setter
     @Id
     private String id;
     private final Event originalEvent;
@@ -18,29 +22,5 @@ public class ArchivedEvent {
         this.owner = originalEvent.getOwner();
         this.participants = participants;
         this.dateArchived = dateArchived;
-    }
-
-    public Event getOriginalEvent() {
-        return originalEvent;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public Participant[] getParticipants() {
-        return participants;
-    }
-
-    public Instant getDateArchived() {
-        return dateArchived;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }

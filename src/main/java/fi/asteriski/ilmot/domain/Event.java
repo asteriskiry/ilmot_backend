@@ -1,5 +1,6 @@
 package fi.asteriski.ilmot.domain;
 
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.lang.Nullable;
 
@@ -7,16 +8,26 @@ import java.time.Instant;
 import java.util.Map;
 import java.util.Objects;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class Event {
 
-    private static final String ROOT_PATH_TO_IMG_FILES = "";
+    private static final String ROOT_PATH_TO_IMG_FILES = ""; // FIXME tee konffilla
 
     @Id
     private String id;
+    @NonNull
     private String owner;
+    @NonNull
     private String name;
+    @NonNull
     private Instant startDate;
+    @NonNull
     private String place;
+    @NonNull
     private String description;
     @Nullable
     private String bannerImg;
@@ -24,20 +35,6 @@ public class Event {
     private Map<String, Object> otherData;
     private Form form;
 
-    public Event() {
-    }
-
-    public Event(String owner, String name, Instant startDate, String place, String description,
-                 String bannerImg, Map<String, Object> otherData, Form form) {
-        this.owner = owner;
-        this.name = name;
-        this.startDate = startDate;
-        this.place = place;
-        this.description = description;
-        this.bannerImg = bannerImg;
-        this.otherData = otherData;
-        this.form = form;
-    }
 
     private Event(Event event) {
         this.owner = event.owner;
@@ -49,48 +46,13 @@ public class Event {
         this.otherData = event.otherData;
     }
 
-    public Event(String owner, String name, Instant startDate, String place, String description) {
-        this(owner, name, startDate, place, description, null, null, null);
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Instant getStartDate() {
-        return startDate;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getBannerImg() {
-        return ROOT_PATH_TO_IMG_FILES + bannerImg;
-    }
-
-    public Map<String, Object> getOtherData() {
-        return otherData;
-    }
-
-    public Form getForm() {
-        return form;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public Event(String owner, String name, Instant startDate, String place, String description, Form form) {
+        this.owner = owner;
+        this.name = name;
+        this.startDate = startDate;
+        this.place = place;
+        this.description = description;
+        this.form = form;
     }
 
     @Override

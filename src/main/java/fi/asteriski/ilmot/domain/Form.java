@@ -1,41 +1,26 @@
 package fi.asteriski.ilmot.domain;
 
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 
 import java.time.Instant;
 import java.util.Map;
 
+@Getter
+@RequiredArgsConstructor
 public class Form {
 
     @Id
+    @Setter
     private String id;
+    @NonNull
     private final Instant dateCreated;
+    @NonNull
     private Map<String, Object> formData;
+    @NonNull
     private final String userCreated;
 
-    public Form(Instant dateCreated, Map<String, Object> formData, String userCreated) {
-        this.dateCreated = dateCreated;
-        this.formData = formData;
-        this.userCreated = userCreated;
-    }
-
-    public Map<String, Object> getFormData() {
-        return formData;
-    }
-
-    public Instant getDateCreated() {
-        return dateCreated;
-    }
-
-    public String getUserCreated() {
-        return userCreated;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }

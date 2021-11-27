@@ -1,30 +1,37 @@
 package fi.asteriski.ilmot.domain;
 
-import com.mongodb.lang.Nullable;
 import fi.asteriski.ilmot.Gender;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Participant {
 
     private static final String SEPARATOR = " ";
+
+    @Getter
+    @Setter
     @Id
     private String id;
+    @Getter
     private String name;
     private String firstName;
     private String lastName;
+    @Getter
     private String email;
-    @Nullable
+    @NonNull
+    @Getter
     private Gender gender;
-    @Nullable
+    @NonNull
+    @Getter
     private Map<String, Object> otherData;
-    @Nullable
-    private Map<Integer, Event> events;
+    @NonNull
+    private Map<Integer, Event> events; // FIXME use a simple id string (events id)
 
-    public Participant() {
-    }
 
     public Participant(String firstName, String lastName, String email, Gender gender, Map<String, Object> otherData) {
         this.firstName = firstName;
@@ -34,30 +41,6 @@ public class Participant {
         this.gender = gender;
         this.otherData = otherData;
         this.events = new HashMap<>();
-    }
-
-    public Map<String, Object> getOtherData() {
-        return otherData;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public void addEvent(Event event) {
